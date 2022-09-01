@@ -1,7 +1,7 @@
 ---
 title: "Lab2 Loop and functions"
 author: "Fang Fang"
-date: "9/7/2020"
+date: "9/3/2021"
 output:
   pdf_document
 
@@ -11,6 +11,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Instructions:
+Please follow the tutorial and answer all the questions for submission. You can put your answers as well as scripts as screenshot in a word document. 
 
 ## Session 1 conditional statements in R
 There are several different conditional statements in R. For the first session in this lab, we will explore more about air quality. 
@@ -18,13 +20,17 @@ There are several different conditional statements in R. For the first session i
 
 ***Background***: Air pollution has a significant impact on human health,the economy and of course the urban environment. You might already hear about the Australia fires last year. We also call it 2019–20 Australian bushfire season, which is mainly in the southeast of the continent. I downloaded the air quality dataset from the website (https://www.dpie.nsw.gov.au/air-quality/search-for-and-download-air-quality-data) which were collected during Dec-2019 and Jan-2020 in Sydney central-east regions.  
 
-Here is the downloading information for our dataset. 
+Here is the detailed information for our dataset. 
 
 1. Data category: AQI (Air Quality Index) which is measured hourly. 
 2. Region: COOK AND PHILLIP in Sydney central-east
-3. Set Dates: Dec/1/2019-Jan/30/2020
-4. Name the output as "AQI_Sydney_Dec_Jan.csv"
+3. Dates period: Dec/1/2019-Jan/30/2020
 
+```{r echo=F}
+xfun::embed_file('Data/AQI_Sydney_Dec_Jan.csv')
+```
+
+Save this .csv file in locally under your data folder. 
 
 Next, let's learn a little bit more about air quality index. You can find out about how current air quality might affect our health by looking at the colour indicator: the Air Quality Index (AQI), which is the 3rd column in our dataset.  
 

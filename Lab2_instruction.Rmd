@@ -1,7 +1,7 @@
 ---
-title: "Lab2 Loop and functions (50pints)"
+title: "Lab2 Loop and functions (50 points)"
 author: "Fang Fang"
-date: "9/3/2021"
+date: "9/7/2022"
 knit: (function(input_file, encoding) {
   out_dir <- 'docs';
   rmarkdown::render(input_file,
@@ -107,11 +107,11 @@ Please just fill up the loop to make it work.Free free to add another else if st
 
 for (i in 1:1464){
 # set up conditions: what to do is the value is missing? 
-    if (# put your answer here) {
-         air_quality_AUS[i,4] <- # put your answer here
+    if (is.na(air_quality_AUS[i,3]==TRUE)) {
+         air_quality_AUS[i,4] <- "Missing"
     } else if (air_quality_AUS[i,3]<= 33){
        #Put your action here. The condition is already provided above. 
-    } else if (# Put your condition here){                  
+    } else if (air_quality_AUS[i,3]<=66 & air_quality_AUS[i,3]>34){                  
          #Put your action here
     }  else if (# Put your condition here){
          #Put your action here
@@ -123,9 +123,9 @@ for (i in 1:1464){
   
 # Tell R what to do how to handle abnomal values 
 # other than categories 1-7. 
-#We need assign error to all other values e.g. negative AQI. 
+# We need assign error to all other values e.g. negative AQI. 
     else 
-        { # put your answer here}
+        { air_quality_AUS[i,4] <-# put your answer here}
 }
 
 
@@ -159,11 +159,26 @@ Use loops to generate a list, which contains 100 vectors, and the size of each v
 ![ ](list.jpg)
 
 Hint: to generate random numbers for normal distribution, use `rnorm` function. For example, the script below generate random 100 numbers with average of 20. 
+```{r eval=F}
+rnorm(100, mean = 20)
+```
 
+Please complete the commands below to answer the question. 
+```{r eval=F}
+# Size of each vector inside the list
+size <- 1:100
+# Generate an empty list called numbers
+numbers <- vector("list", length(size))
+
+# Assign values to each vector in the list. Complete the command below
+for (i in 1:100) {
+
+}
+```
 
 ## Session 2 *apply functions
 
-lapply(), sapply() and tapply() offer a concise and convenient ways to implement the basic  functions by columns.
+sapply() and tapply() offer a concise and convenient ways to implement the basic  functions by columns.
 
   
 Again, the basic idea for these *apply* function  is **Split-Apply-Combine**  for data analysis.     
@@ -186,21 +201,11 @@ class(iris_data)
 ```
 That just tells us that the entire dataset is a 'data.frame'.   
 
-If we want to figure out the class for each individual column, we need to use lapply() function    
-
-###  lapply(list, function). 
-Recall from the lecturer: It applys a Function over a List or Vector. lapply returns a list of the same length as X, each element of which is the result of applying function to the corresponding element of X.Execute the code chunk below. It helps to return the class of each column for the iris dataset. The class type for the output of the lapply function should be a list. 
-```{r eval=F}
-class_list<-lapply(iris_data,class)
-class_list
-class(class_list)
-
-```
 Next let's review sapply function:   
 
 ### sapply(list, function). 
 It applys a function over a List or Vector.    
-sapply is a user-friendly version and wrapper of lapply by default returning a vector or matrix.
+`sapply` is a user-friendly version and wrapper of lapply by default returning a vector or matrix.
 
 We can try sapply function to return the class of each column. Execute the code chunk below. The output should be a vector.
 ```{r eval=F}
@@ -213,7 +218,8 @@ class(class_vector)
 ```
 
 ### tapply(vector, index (group, a categorical column in your dataset), function).  
-tapply first split your data into groups(based on a certain column, which most of the time should be a categorical variable.), then apply a function to each group.
+`tapply` first split your data into groups(based on a certain column, which most of the time should be a categorical variable.), then apply a function to each group.
+
 The example below will calculate the average sepal length (first argument) for each species (second argument, as group.) in iris data. Execute the code below and examine the results. It first split the data by iris species (second argument), then calculate avearge for the column called iris_data$Sepal.Length (first argument)
 ```{r eval=F}
 tapply(iris_data$Sepal.Length, iris_data$Species, mean)
@@ -221,7 +227,7 @@ tapply(iris_data$Sepal.Length, iris_data$Species, mean)
 
 
 ## Question 5 (5 points):
-Can you use sapply/lapply/tapply to return average values for each column except species in iris_data?
+Can you use sapply/tapply to return average values for each column except species in iris_data?
 Finish the code below and answer the question.
 What is the average for 1) Sepal.Length; 2) Sepal.Width; 3) Petal.Length; 4) Petal.Width?
 
@@ -231,17 +237,17 @@ You need to provide your script as a screenshot for submission too.
 
 
 ## Question 6 (5 points): 
-Load another dataset from R called airquality. This dataset includes daily air quality measurements in New York, May to September 1973. Let's load the dataset first. You can also use the help document to learn more about each column in this dataset. 
+Load another dataset from R called `airquality.` This dataset includes daily air quality measurements in New York, May to September 1973. Let's load the dataset first. You can also use the help document to learn more about each column in this dataset. 
 
 ```{r eval=F}
 data("airquality")
 ?airquality
 ```
 
-Use a proper function (sapply/lapply/tapply), to answer the questions. What is the maximum temperature in each month (May to Sep)? You need to provide your script as a screenshot for submission too. 
+Use a proper function (sapply/tapply), to answer the questions. What is the maximum temperature in each month (May to Sep)? You need to provide your script as a screenshot for submission too. 
 
 ## Question 7 (5 points): 
-Use a proper function (sapply/lapply/tapply), to answer the questions.  
+Use a proper function (sapply/tapply), to answer the questions.  
 What is the value range for 1) Ozone; 2)Solar.R; 3) Wind; 4) Temp. You need to provide your script as a screenshot for submission too. Hint: to calculate range, you can use the `range` function. 
 
 
